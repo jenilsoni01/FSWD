@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Todo List App</title>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Todo List App</h1>
+    <input type='text' id='taskInput' placeholder='Add a new task'>
+    <button onclick='addTask()'>Add Task</button>
+    <ul id='taskList'></ul>
+    <script>
+        // Sample JSON array for tasks (initializes a JavaScript array named tasks)
+        let tasks = [
+            { id: 1, text: 'Complete assignment', completed: false },
+            { id: 2, text: 'Read a book', completed: true },
+            { id: 3, text: 'Go for a run', completed: false }
+        ];
+
+        function displayTasks() {
+            const taskListElement = document.getElementById('taskList');
+            taskListElement.innerHTML = ' '; // By doing this, any existing content within the  'taskList' element is completely removed or cleared'.
+
+            tasks.forEach(task => {
+                const li = document.createElement('li');
+                li.textContent = task.text;
+                if (task.completed) {
+                    li.classList.add('completed');
+                }
+                li.onclick = () => toggleTaskStatus(task.id);
+                taskListElement.appendChild(li);
+            });
+        }
+
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const newTaskText = taskInput.value.trim();
+            if (newTaskText !== ' ') {
+                const newTask = {
+                    id: tasks.length + 1,
+                    text: newTaskText,
+                    completed: false
+                };
+                tasks.push(newTask);
+                displayTasks();
+                taskInput.value = ' ';
+            }
+        }
+
+        function toggleTaskStatus(taskId) {
+            const taskIndex = tasks.findIndex(task => task.id === taskId);
+            if (taskIndex !== -1) {
+                tasks[taskIndex].completed = !tasks[taskIndex].completed;
+                displayTasks();
+            }
+        }
+
+        displayTasks();
+
+    </script>
+</body>
+
+</html>

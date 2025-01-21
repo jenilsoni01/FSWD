@@ -1,6 +1,7 @@
 const { log } = require('console');
 const { ADDRCONFIG, promises } = require('dns');
 const fs=require('fs');
+
 // create JSON obj
 const jsonObject={
     Name: "exe",
