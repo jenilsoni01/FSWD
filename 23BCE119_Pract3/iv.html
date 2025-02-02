@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Web Page with Media Queries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .box {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* Media Query for tablets */
+        @media (max-width: 768px) {
+            .box {
+                background-color: #FF9800;
+                font-size: 18px;
+            }
+        }
+
+        /* Media Query for mobile phones */
+        @media (max-width: 480px) {
+            .box {
+                background-color: #F44336;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Responsive Design with Media Queries</h1>
+        <p>Resize the browser to see the background color and font size change.</p>
+    </div>
+</body>
+</html>
+
+<!-- Explanation:
+1. The default style applies for larger screens.
+2. For tablets (max-width: 768px), the background changes to orange, and font size adjusts.
+3. For mobile phones (max-width: 480px), the background changes to red with a smaller font.
+4. Media queries create responsive breakpoints, adapting the layout based on screen size. -->

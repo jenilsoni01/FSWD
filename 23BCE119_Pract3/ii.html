@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Width and Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Responsive Image Example</h1>
+        <p>The image below adjusts its size according to the browser width.</p>
+        <img src="./public/image.png" alt="Sample Image">
+    </div>
+</body>
+</html>
+
+<!-- Explanation:
+1. The container uses "max-width" and "width: 90%" to stay responsive while keeping content centered.
+2. The image is responsive with "width: 100%" and "max-width: 500px", ensuring it scales down on smaller screens without stretching.
+3. Simple layout to highlight the effect of responsive images and flexible width. -->
