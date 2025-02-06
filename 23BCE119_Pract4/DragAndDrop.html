@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop API</title>
+    <style>
+
+        #dragItem {
+            min-width: 100px;
+            min-height: 100px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 10px;
+            cursor: grab;
+            border: 2px solid black;
+            user-select: none;
+        }
+
+        #dropArea {
+            width: 200px;
+            height: 200px;
+            border: 2px dashed black;
+            text-align: center;
+            line-height: 20px;
+            margin-top: 2px;
+            background-color: #f9f9f9;
+        }
+
+        #dropArea.drag-over {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Drag and Drop API Example</h2>
+    <div id="container">
+        <span id="dragItem" draggable="true">Drag Me</span>
+        <span id="dropArea">Drop Here</span>
+    </div>
+
+    <script>
+        const dragItem = document.getElementById("dragItem");
+        const dropArea = document.getElementById("dropArea");
+
+        // Allow the drop event
+        dropArea.addEventListener("dragover", (event) => {
+            event.preventDefault();
+            dropArea.classList.add("drag-over");
+        });
+
+        dropArea.addEventListener("dragleave", () => {
+            dropArea.classList.remove("drag-over");
+        });
+
+        // Set the dragged data
+        dragItem.addEventListener("dragstart", (event) => {
+            event.dataTransfer.setData("text", event.target.id);
+        });
+
+        // Drop event
+        dropArea.addEventListener("drop", (event) => {
+            event.preventDefault();
+            dropArea.classList.remove("drag-over");
+
+            // Prevent multiple drops if an item is already inside
+            if (!dropArea.contains(dragItem)) {
+                dropArea.appendChild(dragItem);
+            }
+        });
+    </script>
+</body>
+
+</html>
