@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Formatting</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #f4f4f4; padding: 20px; }
+        .date-box { padding: 15px; background: #28a745; color: white; font-size: 1.2em; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>Formatted Date</h2>
+        <p class="date-box" v-format-date="date"></p>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    date: new Date()
+                };
+            }
+        });
+
+        app.directive('format-date', {
+            mounted(el, binding) {
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                el.textContent = new Date(binding.value).toLocaleDateString(undefined, options);
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

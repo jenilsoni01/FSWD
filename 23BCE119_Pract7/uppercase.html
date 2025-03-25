@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uppercase Transformation</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #f4f4f4; padding: 20px; }
+        .box { padding: 15px; display: inline-block; background: #007BFF; color: white; font-size: 1.2em; cursor: pointer; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>Click to Convert Text to Uppercase</h2>
+        <div class="box" v-uppercase>Click Me</div>
+    </div>
+
+    <script>
+        const app = Vue.createApp({});
+        
+        app.directive('uppercase', {
+            mounted(el) {
+                el.addEventListener('click', () => {
+                    el.textContent = el.textContent.toUpperCase();
+                });
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

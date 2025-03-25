@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic List with Vue.js</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #f4f4f4; padding: 20px; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
+        input { padding: 10px; width: 70%; margin-right: 5px; border: 2px solid #007BFF; border-radius: 5px; }
+        button { padding: 10px; background: #007BFF; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        ul { list-style: none; padding: 0; margin-top: 10px; }
+        li { padding: 10px; margin: 5px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; background: #ffeb3b; font-weight: bold; }
+        .delete-btn { background: red; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px; }
+        .delete-btn:hover { background: darkred; }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <h2>Dynamic List with Vue.js</h2>
+        <input type="text" v-model="newItem" placeholder="Enter an item" @keyup.enter="addItem">
+        <button @click="addItem">Add</button>
+        <ul>
+            <li v-for="(item, index) in items" :key="index" v-highlight>
+                {{ item }}
+                <button class="delete-btn" @click="deleteItem(index)">X</button>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    newItem: '',
+                    items: []
+                };
+            },
+            methods: {
+                addItem() {
+                    if (this.newItem.trim() !== '') {
+                        this.items.push(this.newItem);
+                        this.newItem = '';
+                    }
+                },
+                deleteItem(index) {
+                    this.items.splice(index, 1);
+                }
+            }
+        });
+
+        app.directive('highlight', {
+            mounted(el) {
+                el.style.backgroundColor = '#ffeb3b';
+                el.style.fontWeight = 'bold';
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>
